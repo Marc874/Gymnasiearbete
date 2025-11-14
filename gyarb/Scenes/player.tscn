@@ -1,4 +1,4 @@
-[gd_scene load_steps=147 format=3 uid="uid://doj2bksyw1obd"]
+[gd_scene load_steps=149 format=3 uid="uid://doj2bksyw1obd"]
 
 [ext_resource type="Script" uid="uid://cbt7qrsygnnnh" path="res://Scripts/player.gd" id="1_x3wgy"]
 [ext_resource type="Texture2D" uid="uid://b51nnw8rww6mu" path="res://Art/FREE_Adventurer 2D Pixel Art/Sprites/IDLE/idle_down.png" id="2_f1ek2"]
@@ -17,6 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://tmm5k27otn7h" path="res://Art/FREE_Adventurer 2D Pixel Art/Sprites/RUN/run_left.png" id="15_0gysh"]
 [ext_resource type="Texture2D" uid="uid://dc8nia7a168u1" path="res://Art/FREE_Adventurer 2D Pixel Art/Sprites/RUN/run_right.png" id="16_vfarp"]
 [ext_resource type="Texture2D" uid="uid://drxlt46ovepnk" path="res://Art/FREE_Adventurer 2D Pixel Art/Sprites/RUN/run_up.png" id="17_y6uwr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qqcod"]
+radius = 18.0
+height = 71.3333
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nmr2m"]
 atlas = ExtResource("2_qqcod")
@@ -559,7 +563,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack_1_down",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -588,7 +592,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack_1_left",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -617,7 +621,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack_1_right",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -646,7 +650,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack_1_up",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -675,7 +679,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack_2_down",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -704,7 +708,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack_2_left",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -733,7 +737,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack_2_right",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -997,13 +1001,27 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qqcod"]
+radius = 58.6818
+
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(3, 3)
+collision_mask = 2
 script = ExtResource("1_x3wgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_qqcod")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_331ug")
-animation = &"Run_up"
+animation = &"Idle_up"
+
+[node name="Player_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_hitbox"]
+position = Vector2(-0.333333, -0.666667)
+shape = SubResource("CircleShape2D_qqcod")
+
+[connection signal="body_entered" from="Player_hitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="Player_hitbox" to="." method="_on_player_hitbox_body_exited"]

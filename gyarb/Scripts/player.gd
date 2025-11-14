@@ -4,7 +4,7 @@ const speed = 150
 var current_dir = "none"
 
 func _ready():
-	$AnimatedSprite2D.play("idle")
+	$AnimatedSprite2D.play("Idle_up")
 	
 
 func _physics_process(delta):
@@ -63,6 +63,16 @@ func play_anim(movement):
 			anim.play("Run_up")
 		elif movement == 0:
 			anim.play("Idle_up")		
+			
+
 	
 	
 	
+
+
+func _on_player_hitbox_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
+
+
+func _on_player_hitbox_body_exited(body: Node2D) -> void:
+	pass # Replace with function body.
