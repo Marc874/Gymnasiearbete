@@ -1,7 +1,7 @@
-[gd_scene load_steps=113 format=3 uid="uid://dex2iu3ni64ht"]
+[gd_scene load_steps=114 format=3 uid="uid://dex2iu3ni64ht"]
 
 [ext_resource type="Texture2D" uid="uid://cx30fsxhvmgqd" path="res://Art/Free-Top-Down-Orc-Game-Character-Pixel-Art/PNG/Orc1/Orc1_attack/orc1_attack_full.png" id="1_287tu"]
-[ext_resource type="Script" uid="uid://c031jiissne4p" path="res://Scenes/enemy.gd" id="1_0830c"]
+[ext_resource type="Script" uid="uid://c031jiissne4p" path="res://Scripts/enemy.gd" id="1_0830c"]
 [ext_resource type="Texture2D" uid="uid://d00ohl7mihbg6" path="res://Art/Free-Top-Down-Orc-Game-Character-Pixel-Art/PNG/Orc1/Orc1_idle/orc1_idle_full.png" id="1_hghv2"]
 [ext_resource type="Texture2D" uid="uid://mm1ctpvwwa8v" path="res://Art/Free-Top-Down-Orc-Game-Character-Pixel-Art/PNG/Orc1/Orc1_walk/orc1_walk_full.png" id="2_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://e0n75juijg7r" path="res://Art/Free-Top-Down-Orc-Game-Character-Pixel-Art/PNG/Orc1/Orc1_death/orc1_death_full.png" id="2_0830c"]
@@ -817,11 +817,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kxd2u"]
-radius = 81.3941
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0830c"]
+radius = 6.0
+height = 20.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2it6j"]
-radius = 16.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_kxd2u"]
+radius = 69.0072
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ghaa6"]
+radius = 21.095
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
@@ -829,8 +833,13 @@ script = ExtResource("1_0830c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_scl1n")
-animation = &"Orc_1_idle_front"
-frame_progress = 0.0829986
+animation = &"Orc_1_walk_back"
+frame = 3
+frame_progress = 0.0197172
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_0830c")
 
 [node name="Detection_area" type="Area2D" parent="."]
 collision_layer = 0
@@ -838,8 +847,13 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_area"]
 shape = SubResource("CircleShape2D_kxd2u")
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_2it6j")
+[node name="enemy_hitbox" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_hitbox"]
+shape = SubResource("CircleShape2D_ghaa6")
 
 [connection signal="body_entered" from="Detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="Detection_area" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="enemy_hitbox" to="." method="_on_enemy_hitbox_body_entered"]
+[connection signal="body_exited" from="enemy_hitbox" to="." method="_on_enemy_hitbox_body_exited"]

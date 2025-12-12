@@ -563,7 +563,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack_1_down",
-"speed": 7.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -592,7 +592,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack_1_left",
-"speed": 7.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -621,7 +621,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack_1_right",
-"speed": 7.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -650,7 +650,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack_1_up",
-"speed": 7.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -679,7 +679,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack_2_down",
-"speed": 7.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -708,7 +708,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack_2_left",
-"speed": 7.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -737,7 +737,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack_2_right",
-"speed": 7.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -766,7 +766,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack_2_up",
-"speed": 7.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1001,8 +1001,9 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qqcod"]
-radius = 58.6818
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_igrcy"]
+radius = 24.0
+height = 80.0
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(3, 3)
@@ -1015,13 +1016,20 @@ shape = SubResource("CapsuleShape2D_qqcod")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_331ug")
-animation = &"Idle_up"
+animation = &"Attack_2_up"
+frame = 7
+frame_progress = 0.666389
 
 [node name="Player_hitbox" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player_hitbox"]
 position = Vector2(-0.333333, -0.666667)
-shape = SubResource("CircleShape2D_qqcod")
+shape = SubResource("CapsuleShape2D_igrcy")
+
+[node name="Attack_cooldown" type="Timer" parent="."]
+wait_time = 0.5
 
 [connection signal="body_entered" from="Player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="Player_hitbox" to="." method="_on_player_hitbox_body_exited"]
+[connection signal="timeout" from="Attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
