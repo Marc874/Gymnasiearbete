@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbyaxdmwo06no"]
+
+[ext_resource type="Script" uid="uid://o0y3fq85oeud" path="res://Scripts/main_menu.gd" id="1_28flt"]
+
+[node name="Main Menu" type="Node2D"]
+script = ExtResource("1_28flt")
+
+[node name="Button_manager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Start" type="Button" parent="Button_manager"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 184.0
+offset_right = 704.0
+offset_bottom = 280.0
+theme_override_font_sizes/font_size = 30
+text = "Start Game🥰"
+flat = true
+
+[node name="Options" type="Button" parent="Button_manager"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 320.0
+offset_right = 704.0
+offset_bottom = 416.0
+theme_override_font_sizes/font_size = 30
+text = "Options⚙️
+"
+flat = true
+
+[node name="Camera2D" type="Camera2D" parent="Button_manager/Options"]
+position = Vector2(112, 64)
+
+[node name="Quit" type="Button" parent="Button_manager"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 456.0
+offset_right = 704.0
+offset_bottom = 552.0
+theme_override_font_sizes/font_size = 30
+text = "Quit🤬"
+flat = true
+
+[connection signal="pressed" from="Button_manager/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Button_manager/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Button_manager/Quit" to="." method="_on_quit_pressed"]

@@ -565,7 +565,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7kwq8")
 }],
-"loop": true,
+"loop": false,
 "name": &"Orc_1_death_back",
 "speed": 5.0
 }, {
@@ -594,7 +594,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j87yr")
 }],
-"loop": true,
+"loop": false,
 "name": &"Orc_1_death_front",
 "speed": 5.0
 }, {
@@ -623,7 +623,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_d6x7o")
 }],
-"loop": true,
+"loop": false,
 "name": &"Orc_1_death_left",
 "speed": 5.0
 }, {
@@ -652,7 +652,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ouixu")
 }],
-"loop": true,
+"loop": false,
 "name": &"Orc_1_death_right",
 "speed": 5.0
 }, {
@@ -818,26 +818,26 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0830c"]
-radius = 6.0
-height = 20.0
+radius = 12.0
+height = 34.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kxd2u"]
-radius = 69.0072
+radius = 123.004
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ghaa6"]
-radius = 21.095
+radius = 19.0
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_0830c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_scl1n")
-animation = &"Orc_1_walk_back"
-frame = 3
-frame_progress = 0.0197172
+animation = &"Orc_1_death_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 2
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_0830c")
 
@@ -845,13 +845,20 @@ shape = SubResource("CapsuleShape2D_0830c")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_area"]
+light_mask = 0
+position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_kxd2u")
 
 [node name="enemy_hitbox" type="Area2D" parent="."]
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_hitbox"]
+light_mask = 2
+position = Vector2(1, -6)
 shape = SubResource("CircleShape2D_ghaa6")
+
+[node name="Attack_cooldown" type="Timer" parent="."]
+wait_time = 0.5
 
 [connection signal="body_entered" from="Detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="Detection_area" to="." method="_on_detection_area_body_exited"]

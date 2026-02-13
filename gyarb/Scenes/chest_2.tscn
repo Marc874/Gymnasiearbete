@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0kscjp7u4iiu"]
+
+[ext_resource type="Script" uid="uid://dlkwww14sq4aw" path="res://Scripts/chest_2.gd" id="1_gmdvf"]
+[ext_resource type="Texture2D" uid="uid://tty5ohwvpb3v" path="res://Art/2D Chests & Coins/Chest_Locked.png" id="1_jvnbe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gmdvf"]
+radius = 24.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7p1hd"]
+atlas = ExtResource("1_jvnbe")
+region = Rect2(0, 0, 21, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_najnx"]
+atlas = ExtResource("1_jvnbe")
+region = Rect2(21, 0, 21, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ddwwk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7p1hd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_najnx")
+}],
+"loop": false,
+"name": &"Chest_2",
+"speed": 5.0
+}]
+
+[node name="Chest_2" type="Area2D"]
+script = ExtResource("1_gmdvf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gmdvf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ddwwk")
+animation = &"Chest_2"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

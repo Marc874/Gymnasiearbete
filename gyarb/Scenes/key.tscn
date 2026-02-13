@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dig4pap0ju3yl"]
+
+[ext_resource type="Texture2D" uid="uid://dxvvwavayi5s3" path="res://Art/2D Chests & Coins/Key.png" id="1_ut0wq"]
+[ext_resource type="Script" uid="uid://dauy2ajf01tct" path="res://Scripts/key.gd" id="2_udxw8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_udxw8"]
+radius = 16.0
+
+[sub_resource type="GDScript" id="GDScript_udxw8"]
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 4
+script = ExtResource("2_udxw8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_udxw8")
+
+[node name="Key" type="Sprite2D" parent="."]
+texture = ExtResource("1_ut0wq")
+script = SubResource("GDScript_udxw8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
