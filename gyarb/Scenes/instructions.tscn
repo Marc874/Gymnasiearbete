@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://dstk2hjkjf5l1"]
+
+[ext_resource type="Script" uid="uid://cvea3sgmkwjxb" path="res://Scripts/instructions.gd" id="1_8p7yn"]
+
+[node name="instructions" type="Node2D"]
+script = ExtResource("1_8p7yn")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 384.0
+offset_top = 320.0
+offset_right = 768.0
+offset_bottom = 448.0
+text = "E = Attack
+WASD = Movement
+F = Interact
+Q = Dodge"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Exit" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 192.0
+offset_right = 768.0
+offset_bottom = 256.0
+text = "Go back to options"
+
+[connection signal="pressed" from="Control/Exit" to="." method="_on_exit_pressed"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbqffi7ykdceg"]
+
+[ext_resource type="Script" uid="uid://0boc3yfa3m4c" path="res://Scripts/settings.gd" id="1_4geyq"]
+
+[node name="settings" type="Node2D"]
+script = ExtResource("1_4geyq")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Exit" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 448.0
+offset_top = 128.0
+offset_right = 704.0
+offset_bottom = 192.0
+text = "Go back to options"
+
+[connection signal="pressed" from="Control/Exit" to="." method="_on_exit_pressed"]

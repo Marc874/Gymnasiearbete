@@ -15,7 +15,15 @@ func open_the_door_please():
 		$Closed.modulate = Color(1, 1, 1, 1)
 
 func opening_door():
-	get_tree().change_scene_to_file("res://Scenes/castle.tscn")
+	var scene_path = get_tree().current_scene.scene_file_path
+	
+	if scene_path == "res://Scenes/node_2d.tscn":
+		global.return_position = Vector2(160, 100)
+		get_tree().change_scene_to_file("res://Scenes/castle.tscn")
+		
+	elif scene_path == "res://Scenes/castle.tscn":
+		global.return_position = Vector2(384, -50)
+		get_tree().change_scene_to_file("res://Scenes/node_2d.tscn")
 
 func _on_body_entered(body):
 	if body.is_in_group("player"):

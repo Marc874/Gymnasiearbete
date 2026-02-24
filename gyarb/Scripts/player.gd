@@ -6,11 +6,13 @@ var health = 100
 var player_alive = true
 var inventory = []
 
+@onready var healthbar = $Healthbar
+
 var is_dodging := false
 const DODGE_TIME := 0.2
 var current_attack_damage := 0
 const ATTACK_1_DAMAGE := 18
-const ATTACK_2_DAMAGE := 50
+const ATTACK_2_DAMAGE := 28
 var is_attacking := false
 var is_moving := false
 var attack_cooldown := 0.3
@@ -20,8 +22,12 @@ var speed = 170
 var current_dir = "none"
 
 func _ready():
+	if global.return_position != Vector2.ZERO:
+		global_position = global.return_position
 	add_to_group("player")
 	$AnimatedSprite2D.play("Idle_up")
+	
+	healthbar.init_health(health)
 
 func pickup_key():
 	has_key = true
@@ -152,6 +158,7 @@ func take_damage(amount: int) -> void:
 		$AnimatedSprite2D.modulate = Color(0.66, 0.0, 0.0, 1)
 		
 		die()
+	healthbar.health = health
 
 func die():
 	player_alive = false

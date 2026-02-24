@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch1xycacsrh48"]
+
+[ext_resource type="Script" uid="uid://c60cnrs3i7ej4" path="res://Scripts/options.gd" id="1_prnvy"]
+
+[sub_resource type="GDScript" id="GDScript_4tmxy"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="options" type="Node2D"]
+script = ExtResource("1_prnvy")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Settings" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 248.0
+offset_right = 640.0
+offset_bottom = 280.0
+text = "Settings
+"
+script = SubResource("GDScript_4tmxy")
+
+[node name="Instructions" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 10.4
+anchor_top = 4.6
+anchor_right = 16.0
+anchor_bottom = 7.0
+offset_left = -3.05176e-05
+offset_top = -1.52588e-05
+offset_bottom = -64.0
+text = "Instructions"
+
+[node name="Main_menu" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 112.0
+offset_right = 640.0
+offset_bottom = 144.0
+text = "Main Menu"
+
+[connection signal="pressed" from="Control/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Control/Instructions" to="." method="_on_instructions_pressed"]
+[connection signal="pressed" from="Control/Main_menu" to="." method="_on_main_menu_pressed"]

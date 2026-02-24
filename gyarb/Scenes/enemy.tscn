@@ -1,10 +1,11 @@
-[gd_scene load_steps=114 format=3 uid="uid://dex2iu3ni64ht"]
+[gd_scene load_steps=115 format=3 uid="uid://dex2iu3ni64ht"]
 
 [ext_resource type="Texture2D" uid="uid://cx30fsxhvmgqd" path="res://Art/Free-Top-Down-Orc-Game-Character-Pixel-Art/PNG/Orc1/Orc1_attack/orc1_attack_full.png" id="1_287tu"]
 [ext_resource type="Script" uid="uid://c031jiissne4p" path="res://Scripts/enemy.gd" id="1_0830c"]
 [ext_resource type="Texture2D" uid="uid://d00ohl7mihbg6" path="res://Art/Free-Top-Down-Orc-Game-Character-Pixel-Art/PNG/Orc1/Orc1_idle/orc1_idle_full.png" id="1_hghv2"]
 [ext_resource type="Texture2D" uid="uid://mm1ctpvwwa8v" path="res://Art/Free-Top-Down-Orc-Game-Character-Pixel-Art/PNG/Orc1/Orc1_walk/orc1_walk_full.png" id="2_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://e0n75juijg7r" path="res://Art/Free-Top-Down-Orc-Game-Character-Pixel-Art/PNG/Orc1/Orc1_death/orc1_death_full.png" id="2_0830c"]
+[ext_resource type="PackedScene" uid="uid://bhh8lkyekfq01" path="res://Scenes/healthbar.tscn" id="6_ghaa6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iol0x"]
 atlas = ExtResource("1_287tu")
@@ -859,6 +860,12 @@ shape = SubResource("CircleShape2D_ghaa6")
 
 [node name="Attack_cooldown" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="Healthbar" parent="." instance=ExtResource("6_ghaa6")]
+offset_left = -18.0
+offset_top = -33.0
+offset_right = 19.0
+offset_bottom = -29.0
 
 [connection signal="body_entered" from="Detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="Detection_area" to="." method="_on_detection_area_body_exited"]

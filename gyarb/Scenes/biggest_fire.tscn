@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://bi7rlq5mlnssn"]
+
+[ext_resource type="Script" uid="uid://da7ww5wcel68d" path="res://Scripts/biggest_fire.gd" id="1_ou5h8"]
+[ext_resource type="Texture2D" uid="uid://co15njctq48po" path="res://Art/free-2d-top-down-pixel-dungeon-asset-pack/PNG/fire_animation.png" id="2_5v1vy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fhi7"]
+atlas = ExtResource("2_5v1vy")
+region = Rect2(88, 0, 44, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_js0ma"]
+atlas = ExtResource("2_5v1vy")
+region = Rect2(88, 48, 44, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15sb4"]
+atlas = ExtResource("2_5v1vy")
+region = Rect2(88, 96, 44, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qccvq"]
+atlas = ExtResource("2_5v1vy")
+region = Rect2(88, 144, 44, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkif6"]
+atlas = ExtResource("2_5v1vy")
+region = Rect2(88, 192, 44, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3iafy"]
+atlas = ExtResource("2_5v1vy")
+region = Rect2(88, 240, 44, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2xlq6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fhi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_js0ma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15sb4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qccvq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkif6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3iafy")
+}],
+"loop": true,
+"name": &"Big_fire_1",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0c1ck"]
+
+[node name="Biggest_fire" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_ou5h8")
+
+[node name="Big_Fire" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2xlq6")
+animation = &"Big_fire_1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 5)
+shape = SubResource("CircleShape2D_0c1ck")

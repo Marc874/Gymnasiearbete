@@ -5,6 +5,7 @@ var speed = 100
 var player_chase = false
 var player = null
 var current_dir = "down"
+@onready var healthbar = $Healthbar
 
 var can_attack := true
 const ATTACK_DAMAGE := 10
@@ -86,7 +87,7 @@ func take_damage(amount: int) -> void:
 		is_dead = true
 		
 		player_chase = false
-		
+	
 		match current_dir:
 			"down":
 				$AnimatedSprite2D.play("Orc_1_death_front")
@@ -100,6 +101,11 @@ func take_damage(amount: int) -> void:
 		await $AnimatedSprite2D.animation_finished
 		
 		queue_free()
+	
+	healthbar.health = health
+
+func _ready():
+	healthbar.init_health(health)
 
 func _on_enemy_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_method("player")and not body.is_dodging:

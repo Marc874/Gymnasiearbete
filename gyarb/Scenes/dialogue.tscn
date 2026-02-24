@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvmjag4xx1hov"]
+
+[ext_resource type="Script" uid="uid://ck8cbenm1g1vn" path="res://Scripts/dialogue.gd" id="1_5rqxr"]
+
+[node name="Dialogue" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_5rqxr")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 151.0
+offset_bottom = 97.0
+
+[node name="Name" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Text" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
