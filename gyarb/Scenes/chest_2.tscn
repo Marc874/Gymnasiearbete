@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0kscjp7u4iiu"]
+[gd_scene load_steps=11 format=3 uid="uid://d0kscjp7u4iiu"]
 
 [ext_resource type="Script" uid="uid://dlkwww14sq4aw" path="res://Scripts/chest_2.gd" id="1_gmdvf"]
 [ext_resource type="Texture2D" uid="uid://tty5ohwvpb3v" path="res://Art/2D Chests & Coins/Chest_Locked.png" id="1_jvnbe"]
+[ext_resource type="PackedScene" uid="uid://bdy446mfy2dmq" path="res://Scenes/rare_items.tscn" id="3_7p1hd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gmdvf"]
 radius = 24.0
@@ -28,6 +29,66 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_ddwwk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("rare_items:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("rare_items:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_najnx"]
+resource_name = "items"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("rare_items:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -200)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("rare_items:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aohbh"]
+_data = {
+&"RESET": SubResource("Animation_ddwwk"),
+&"items": SubResource("Animation_najnx")
+}
+
 [node name="Chest_2" type="Area2D"]
 script = ExtResource("1_gmdvf")
 
@@ -37,6 +98,16 @@ shape = SubResource("CircleShape2D_gmdvf")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ddwwk")
 animation = &"Chest_2"
+
+[node name="rare_items" parent="." instance=ExtResource("3_7p1hd")]
+position = Vector2(-3, 0)
+scale = Vector2(0.15, 0.15)
+animation = &"health_potion"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_aohbh")
+}
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -4,6 +4,9 @@ var player_can_open := false
 var player_ref = null
 var opened := false
 
+func _ready() -> void:
+	$rare_items.visible = false
+
 func _process(_delta):
 	if player_can_open and Input.is_action_just_pressed("Interact") and not opened:
 		open_chest()
@@ -14,6 +17,12 @@ func open_chest():
 		
 		$AnimatedSprite2D.modulate = Color(2.9, 2.9, 2.9, 1)
 		$AnimatedSprite2D.play("Chest_2")
+		
+		var loot_animations = ["gold", "health_potion", "damage_potion"]
+		var random_anim = loot_animations.pick_random()
+		$rare_items.play(random_anim)
+		
+		$AnimationPlayer.play("items")
 		
 		await $AnimatedSprite2D.animation_finished
 		

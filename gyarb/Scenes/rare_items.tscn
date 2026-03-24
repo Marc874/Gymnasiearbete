@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdy446mfy2dmq"]
+
+[ext_resource type="Texture2D" uid="uid://cm1osarlcss7i" path="res://Art/rpgItems-preview-removebg-preview.png" id="2_q115l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkw6c"]
+atlas = ExtResource("2_q115l")
+region = Rect2(0, 0, 62, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0x4f"]
+atlas = ExtResource("2_q115l")
+region = Rect2(124, 248, 62, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8jj5"]
+atlas = ExtResource("2_q115l")
+region = Rect2(62, 0, 62, 62)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ec30x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkw6c")
+}],
+"loop": true,
+"name": &"damage_potion",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0x4f")
+}],
+"loop": true,
+"name": &"gold",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8jj5")
+}],
+"loop": true,
+"name": &"health_potion",
+"speed": 5.0
+}]
+
+[node name="rare_items" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ec30x")
+animation = &"damage_potion"

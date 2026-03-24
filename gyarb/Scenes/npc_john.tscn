@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cxg3bgtnkjrm8" path="res://Art/NPC Pack/Old man/Old man walk-Sheet.png" id="1_tvebo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dcela"]
+height = 36.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dcela"]
 atlas = ExtResource("1_tvebo")
@@ -254,6 +255,7 @@ collision_mask = 5
 script = ExtResource("1_dcela")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 3)
 shape = SubResource("CapsuleShape2D_dcela")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -263,7 +265,16 @@ animation = &"talking_left"
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -0.5)
 shape = SubResource("CircleShape2D_wm6or")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -8.5
+offset_top = -27.5
+offset_right = 31.5
+offset_bottom = 12.5
+scale = Vector2(0.5, 0.5)
+text = "John"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -1,0 +1,114 @@
+[gd_scene load_steps=12 format=3 uid="uid://cbsic6l6gw4sv"]
+
+[ext_resource type="Script" uid="uid://hex308f0antv" path="res://Scripts/crystals.gd" id="1_bafxm"]
+[ext_resource type="Texture2D" uid="uid://omyrsderjlic" path="res://Art/Skärmavbild_2026-03-17_kl._15.51.41-removebg-preview.png" id="1_wvrxk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bafxm"]
+radius = 160.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udfyf"]
+atlas = ExtResource("1_wvrxk")
+region = Rect2(0, 0, 176, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdqu5"]
+atlas = ExtResource("1_wvrxk")
+region = Rect2(176, 0, 176, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7pyp"]
+atlas = ExtResource("1_wvrxk")
+region = Rect2(352, 0, 176, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjlr7"]
+atlas = ExtResource("1_wvrxk")
+region = Rect2(528, 0, 176, 184)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8pqx5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udfyf")
+}],
+"loop": true,
+"name": &"crystal_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdqu5")
+}],
+"loop": true,
+"name": &"crystal_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7pyp")
+}],
+"loop": true,
+"name": &"crystal_3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjlr7")
+}],
+"loop": true,
+"name": &"crystal_4",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_wvrxk"]
+resource_name = "passive"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -20), Vector2(0, 20), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bafxm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_udfyf"]
+_data = {
+&"RESET": SubResource("Animation_bafxm"),
+&"passive": SubResource("Animation_wvrxk")
+}
+
+[node name="Crystals" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_bafxm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bafxm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(16, 0)
+sprite_frames = SubResource("SpriteFrames_8pqx5")
+animation = &"crystal_1"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_udfyf")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -833,9 +833,10 @@ collision_layer = 2
 script = ExtResource("1_0830c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_scl1n")
-animation = &"Orc_1_death_right"
+animation = &"Orc_1_attack_1_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 2
@@ -866,6 +867,14 @@ offset_left = -18.0
 offset_top = -33.0
 offset_right = 19.0
 offset_bottom = -29.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -19.0
+offset_top = -45.0
+offset_right = 64.0
+offset_bottom = -19.0
+scale = Vector2(0.5, 0.5)
+text = "Green Orc"
 
 [connection signal="body_entered" from="Detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="Detection_area" to="." method="_on_detection_area_body_exited"]

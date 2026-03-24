@@ -1,6 +1,6 @@
-
 extends CharacterBody2D
 
+var has_crystal := false
 var has_key := false
 var health = 100
 var player_alive = true
@@ -32,6 +32,10 @@ func _ready():
 func pickup_key():
 	has_key = true
 	print("Player now has key:", has_key)
+
+func pickup_crystal():
+	has_crystal = true
+	print("Player now has Crysyal:", has_key)
 
 func use_key() -> bool:
 	if has_key:
@@ -130,7 +134,7 @@ func attack():
 		current_attack_damage = ATTACK_1_DAMAGE
 	
 	for body in bodies:
-		if body is Enemy:
+		if body is Enemy or Boss_Enemy:
 			body.take_damage(current_attack_damage)
 			
 	match current_dir:
@@ -164,7 +168,11 @@ func die():
 	player_alive = false
 	print("player has been killed")
 	
+	$AnimationPlayer.play("death")
+	await $AnimationPlayer.animation_finished
+	
 	queue_free()
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 		
 func _process(delta):
 	if Input.is_action_pressed("Attack_1"):	
