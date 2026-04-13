@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://d2oawcaigp4i2"]
+
+[ext_resource type="Texture2D" uid="uid://cwycsukd0vjhy" path="res://Art/Dimensional_Portal.png" id="1_j20fm"]
+[ext_resource type="Script" uid="uid://daia0id1nn2qw" path="res://Scripts/portal.gd" id="1_oi2tk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oi2tk"]
+radius = 32.0624
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dashy"]
+atlas = ExtResource("1_j20fm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwyjv"]
+atlas = ExtResource("1_j20fm")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqy4h"]
+atlas = ExtResource("1_j20fm")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lpw3"]
+atlas = ExtResource("1_j20fm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcl8t"]
+atlas = ExtResource("1_j20fm")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt0xm"]
+atlas = ExtResource("1_j20fm")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ghjs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dashy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uwyjv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqy4h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lpw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcl8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt0xm")
+}],
+"loop": true,
+"name": &"portal",
+"speed": 8.0
+}]
+
+[node name="portal" type="Area2D"]
+script = ExtResource("1_oi2tk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
+shape = SubResource("CircleShape2D_oi2tk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7ghjs")
+animation = &"portal"
+frame_progress = 0.00124935
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

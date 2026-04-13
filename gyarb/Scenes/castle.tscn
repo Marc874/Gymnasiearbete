@@ -1,5 +1,6 @@
-[gd_scene load_steps=47 format=4 uid="uid://w3q8l6idus8v"]
+[gd_scene load_steps=49 format=4 uid="uid://w3q8l6idus8v"]
 
+[ext_resource type="Script" uid="uid://dtqeagtv8fevd" path="res://Scripts/castle.gd" id="1_iow4c"]
 [ext_resource type="Texture2D" uid="uid://s1fb5t3hww4e" path="res://Art/free-2d-top-down-pixel-dungeon-asset-pack/PNG/walls_floor.png" id="1_r1mkv"]
 [ext_resource type="Texture2D" uid="uid://dwhieu8frwskt" path="res://Art/free-2d-top-down-pixel-dungeon-asset-pack/PNG/doors_lever_chest_animation.png" id="2_nsfh2"]
 [ext_resource type="PackedScene" uid="uid://doj2bksyw1obd" path="res://Scenes/player.tscn" id="2_r1mkv"]
@@ -14,9 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://us276dgrn1ma" path="res://Art/free-2d-top-down-pixel-dungeon-asset-pack/PNG/decorative_cracks_walls.png" id="8_q5khc"]
 [ext_resource type="PackedScene" uid="uid://bi7rlq5mlnssn" path="res://Scenes/biggest_fire.tscn" id="12_ksrhq"]
 [ext_resource type="PackedScene" uid="uid://tjcb6gngqfaw" path="res://Scenes/chest.tscn" id="13_j0xno"]
-[ext_resource type="PackedScene" uid="uid://c4lvym3f6m3sy" path="res://Scenes/ladder.tscn" id="14_q5khc"]
 [ext_resource type="PackedScene" uid="uid://b73n7qgbatlup" path="res://Scenes/door.tscn" id="16_fv8f7"]
 [ext_resource type="PackedScene" uid="uid://bf18i8xppukcf" path="res://Scenes/npc_john.tscn" id="17_0nk28"]
+[ext_resource type="PackedScene" uid="uid://dqeutnh8mabae" path="res://Scenes/fade_transition.tscn" id="19_2wuuh"]
+[ext_resource type="PackedScene" uid="uid://cpapfmvl3sttg" path="res://Scenes/pause_menu.tscn" id="19_iow4c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p6e6l"]
 texture = ExtResource("1_r1mkv")
@@ -4885,6 +4887,8 @@ texture = ExtResource("8_q5khc")
 sources/0 = SubResource("TileSetAtlasSource_2ktuu")
 
 [node name="Castle" type="Node2D"]
+position = Vector2(-472, -104)
+script = ExtResource("1_iow4c")
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(2.5, 2.5)
@@ -4908,7 +4912,7 @@ tile_map_data = PackedByteArray("AAATAPz/AAAAAAQAAAATAP3/AAAAAAUAAAAUAPz/AAABAAQ
 tile_set = SubResource("TileSet_o4sqp")
 
 [node name="Objects" type="TileMapLayer" parent="TileMap"]
-tile_map_data = PackedByteArray("AAADAA0AAQAAAAwAAAAFAAsAAQAFAAoAAAAHAA0AAQAAAAwAABAFAA0AAQAFAAIAAAATAPz/AAASAAMAAAATAP3/AAASAAQAAAAUAPz/AAATAAMAAAAUAP3/AAATAAQAAAAeAA0AAgAAAAIAAAAeAA4AAgAAAAIAAAAcAA0AAgAAAAIAAAAcAA4AAgAAAAIAAAARAAYAAgAGAAQAAAAKAAYAAQAGAAQAAAAUAPr/AAAWAAQAAAAUAPv/AAAWAAUAAAAVAPr/AAAXAAQAAAAWAPr/AAAWAAQAAAAWAPv/AAAWAAUAAAAYAPr/AQAIAA8AAAAdAPr/AQAIAA8AAAAZAP7/AQALAAoAAAAcAP7/AQALAAoAAAANAAsAAgADAAAAAAASAAsAAgADAAAAAAARAA0AAQAFAAIAAAASAA4AAQAGAAcAAAANAA4AAQAGAAcAAAADAAoAAQAGAAcAAAAHAAoAAQAGAAcAAAAIAAQAAQADAAcAAAAiAA8AAQAGAAcAAAAiAPj/AAAHAAAAAAAiAPn/AAAHAAEAAAAiAPr/AAAHAAIAAAAiAPv/AAAHAAMAAAA=")
+tile_map_data = PackedByteArray("AAADAA0AAQAAAAwAAAAFAAsAAQAFAAoAAAAHAA0AAQAAAAwAABAFAA0AAQAFAAIAAAATAPz/AAASAAMAAAATAP3/AAASAAQAAAAUAPz/AAATAAMAAAAUAP3/AAATAAQAAAAeAA0AAgAAAAIAAAAeAA4AAgAAAAIAAAAcAA0AAgAAAAIAAAAcAA4AAgAAAAIAAAARAAYAAgAGAAQAAAAKAAYAAQAGAAQAAAAUAPr/AAAWAAQAAAAUAPv/AAAWAAUAAAAVAPr/AAAXAAQAAAAWAPr/AAAWAAQAAAAWAPv/AAAWAAUAAAAYAPr/AQAIAA8AAAAdAPr/AQAIAA8AAAAZAP7/AQALAAoAAAAcAP7/AQALAAoAAAANAAsAAgADAAAAAAASAAsAAgADAAAAAAARAA0AAQAFAAIAAAASAA4AAQAGAAcAAAANAA4AAQAGAAcAAAADAAoAAQAGAAcAAAAHAAoAAQAGAAcAAAAIAAQAAQADAAcAAAAiAA8AAQAGAAcAAAAiAPj/AAAHAAAAAAAgAPr/AAAWAAQAAAAhAPr/AAAXAAQAAAAiAPr/AAAWAAQAAAAiAPv/AAAWAAUAAAA=")
 tile_set = SubResource("TileSet_iow4c")
 
 [node name="Object_stack_2" type="TileMapLayer" parent="TileMap"]
@@ -4941,10 +4945,6 @@ position = Vector2(33.2, 44.8)
 [node name="Chest" parent="TileMap" instance=ExtResource("13_j0xno")]
 position = Vector2(551.2, 209.6)
 
-[node name="Ladder" parent="TileMap" instance=ExtResource("14_q5khc")]
-position = Vector2(550.4, -80.8)
-scale = Vector2(0.683422, 0.660808)
-
 [node name="Player" parent="." instance=ExtResource("2_r1mkv")]
 position = Vector2(160, 112)
 scale = Vector2(1, 1)
@@ -4965,3 +4965,15 @@ position = Vector2(160, 96)
 
 [node name="NPC_john" parent="." instance=ExtResource("17_0nk28")]
 position = Vector2(896, 56)
+
+[node name="Fade_transition" parent="." instance=ExtResource("19_2wuuh")]
+offset_left = -344.0
+offset_top = -288.0
+offset_right = 1472.0
+offset_bottom = 704.0
+
+[node name="Timer" type="Timer" parent="Fade_transition"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause_menu" parent="CanvasLayer" instance=ExtResource("19_iow4c")]

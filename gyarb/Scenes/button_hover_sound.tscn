@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhqsujqnd2l3y"]
+
+[ext_resource type="AudioStream" uid="uid://dg550oj714wkq" path="res://sounds/universfield-computer-mouse-click-02-383961.mp3" id="1_uvmbm"]
+
+[node name="button_hover_sound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_uvmbm")

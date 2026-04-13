@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://dstk2hjkjf5l1"]
+[gd_scene load_steps=8 format=4 uid="uid://dstk2hjkjf5l1"]
 
 [ext_resource type="Script" uid="uid://cvea3sgmkwjxb" path="res://Scripts/instructions.gd" id="1_8p7yn"]
 [ext_resource type="Texture2D" uid="uid://bsc1r7o505o2h" path="res://Art/Pixel Art Top Down - Basic v1-2/Texture/TX Tileset Grass.png" id="2_dxknu"]
+[ext_resource type="PackedScene" uid="uid://dqeutnh8mabae" path="res://Scenes/fade_transition.tscn" id="3_5doqj"]
+[ext_resource type="PackedScene" uid="uid://b68tsnb5y144n" path="res://Scenes/menu_music.tscn" id="4_s7gfc"]
+[ext_resource type="PackedScene" uid="uid://bhqsujqnd2l3y" path="res://Scenes/button_hover_sound.tscn" id="5_v8bcc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5doqj"]
 texture = ExtResource("2_dxknu")
@@ -279,16 +282,21 @@ tile_set = SubResource("TileSet_s7gfc")
 offset_left = 384.0
 offset_top = 320.0
 offset_right = 768.0
-offset_bottom = 464.0
+offset_bottom = 520.0
 text = "E = Attack
+Q = Dodge
 WASD = Movement
 F = Interact
-Q = Dodge
-ESC = Main Menu"
+H = Heal
+G = Buff
+ESC = Paus Menu"
 
 [node name="Camera2D" type="Camera2D" parent="TextEdit"]
 position = Vector2(192, -16)
 zoom = Vector2(2, 2)
+
+[node name="menu_music" parent="TextEdit" instance=ExtResource("4_s7gfc")]
+position = Vector2(-384, -320)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -304,4 +312,19 @@ offset_right = 768.0
 offset_bottom = 256.0
 text = "Go back to options"
 
+[node name="Fade_transition" parent="." instance=ExtResource("3_5doqj")]
+visible = false
+z_index = 1
+offset_left = -672.0
+offset_top = -544.0
+offset_right = 1944.0
+offset_bottom = 1160.0
+
+[node name="Fade_timer" type="Timer" parent="Fade_transition"]
+
+[node name="button_hover_sound" parent="." instance=ExtResource("5_v8bcc")]
+position = Vector2(384, 192)
+
+[connection signal="focus_entered" from="Control/Exit" to="." method="_on_exit_focus_entered"]
 [connection signal="pressed" from="Control/Exit" to="." method="_on_exit_pressed"]
+[connection signal="timeout" from="Fade_transition/Fade_timer" to="." method="_on_fade_timer_timeout"]

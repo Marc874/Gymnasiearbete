@@ -1,0 +1,89 @@
+[gd_scene load_steps=8 format=3 uid="uid://baahey7v7ngdo"]
+
+[ext_resource type="Script" uid="uid://baucmj82ebtni" path="res://Scripts/credits.gd" id="1_ccovl"]
+[ext_resource type="PackedScene" uid="uid://dqeutnh8mabae" path="res://Scenes/fade_transition.tscn" id="1_r18jl"]
+[ext_resource type="Texture2D" uid="uid://dr7ej5qibtgam" path="res://Art/Black_colour.jpg" id="2_ccovl"]
+[ext_resource type="AudioStream" uid="uid://c7n3c8kqdhgk3" path="res://sounds/scratchonix-drum-roll-for-victory-366448 01.10.43.mp3" id="4_1bamb"]
+
+[sub_resource type="Animation" id="Animation_1bamb"]
+resource_name = "credits"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(472, 700), Vector2(472, 172)]
+}
+
+[sub_resource type="Animation" id="Animation_xelri"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(472, 700)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uah1q"]
+_data = {
+&"RESET": SubResource("Animation_xelri"),
+&"credits": SubResource("Animation_1bamb")
+}
+
+[node name="credits" type="Node2D"]
+script = ExtResource("1_ccovl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(990, 436)
+scale = Vector2(1.57821, 1.06731)
+texture = ExtResource("2_ccovl")
+
+[node name="Fade_transition" parent="." instance=ExtResource("1_r18jl")]
+visible = false
+z_index = 1
+offset_left = -1168.0
+offset_top = -944.0
+offset_right = 2704.0
+offset_bottom = 1592.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 472.0
+offset_top = 172.0
+offset_right = 680.0
+offset_bottom = 456.0
+text = "Thanks for playing a game
+		  by Marc Jonsson
+
+
+
+
+
+
+
+			Press ESC to exit"
+
+[node name="Camera2D" type="Camera2D" parent="RichTextLabel"]
+position = Vector2(104, 196)
+scale = Vector2(0.6, 0.6)
+zoom = Vector2(1.2, 1.2)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_1bamb")
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_uah1q")
+}

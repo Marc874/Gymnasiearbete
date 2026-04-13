@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://je6xwsibqdnp"]
+
+[ext_resource type="AudioStream" uid="uid://3cb6c0txcw8o" path="res://sounds/gigidelaromusic-crystal-light-short-450974 01.10.42.mp3" id="1_018al"]
+
+[node name="crystal_sound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_018al")
+volume_db = -10.0
+autoplay = true
+parameters/looping = true

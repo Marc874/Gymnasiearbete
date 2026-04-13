@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://dljx6002h0rhn"]
+
+[ext_resource type="Script" uid="uid://j4h3x0tykkxi" path="res://Scripts/crystal_4.gd" id="1_21u2t"]
+[ext_resource type="Texture2D" uid="uid://omyrsderjlic" path="res://Art/Skärmavbild_2026-03-17_kl._15.51.41-removebg-preview.png" id="1_myl44"]
+[ext_resource type="PackedScene" uid="uid://je6xwsibqdnp" path="res://Scenes/crystal_sound.tscn" id="3_ocqj1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_21u2t"]
+radius = 232.551
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocqj1"]
+atlas = ExtResource("1_myl44")
+region = Rect2(528, 0, 176, 184)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ftfrj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ocqj1")
+}],
+"loop": true,
+"name": &"crystal_4",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_pny6a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_j6l7l"]
+resource_name = "passive"
+length = 2.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.4, 2.1, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -20), Vector2(0, 0), Vector2(0, 20), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p7gkb"]
+_data = {
+&"RESET": SubResource("Animation_pny6a"),
+&"passive": SubResource("Animation_j6l7l")
+}
+
+[node name="crystal_4" type="Area2D"]
+script = ExtResource("1_21u2t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_21u2t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-8, 0)
+sprite_frames = SubResource("SpriteFrames_ftfrj")
+animation = &"crystal_4"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_p7gkb")
+}
+
+[node name="crystal_sound" parent="." instance=ExtResource("3_ocqj1")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

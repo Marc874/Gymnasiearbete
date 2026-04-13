@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://cpgrs7wtjuy3w"]
+
+[ext_resource type="Script" uid="uid://c060ifcbjhit3" path="res://Scripts/crystal_3.gd" id="1_nwhtb"]
+[ext_resource type="Texture2D" uid="uid://omyrsderjlic" path="res://Art/Skärmavbild_2026-03-17_kl._15.51.41-removebg-preview.png" id="2_viwkj"]
+[ext_resource type="PackedScene" uid="uid://je6xwsibqdnp" path="res://Scenes/crystal_sound.tscn" id="3_viwkj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7xrxh"]
+radius = 168.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dwqi"]
+atlas = ExtResource("2_viwkj")
+region = Rect2(352, 0, 176, 184)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o3sw7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6dwqi")
+}],
+"loop": true,
+"name": &"crystal_3",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_3h7hb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_48v8g"]
+resource_name = "passive"
+length = 2.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.4, 2.1, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -20), Vector2(0, 0), Vector2(0, 20), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_setg5"]
+_data = {
+&"RESET": SubResource("Animation_3h7hb"),
+&"passive": SubResource("Animation_48v8g")
+}
+
+[node name="crystal_3" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_nwhtb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7xrxh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_o3sw7")
+animation = &"crystal_3"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_setg5")
+}
+
+[node name="crystal_sound" parent="." instance=ExtResource("3_viwkj")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

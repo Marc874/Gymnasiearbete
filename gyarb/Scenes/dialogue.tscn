@@ -1,22 +1,147 @@
-[gd_scene format=3 uid="uid://dvmjag4xx1hov"]
+[gd_scene load_steps=5 format=3 uid="uid://dvmjag4xx1hov"]
+
+[sub_resource type="Animation" id="Animation_5rqxr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Text:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Hello adventurer, it seems that you have something on you mind."]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Text:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer:active")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ugw53"]
+resource_name = "dialogue_1"
+length = 18.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Text:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 6, 10, 14),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": ["Hello adventurer, it seems that you have something on you mind.", "You come from another world you say? I think I can help you.
+
+", "You will have to gather the 4 magic crystals which could probably transport you back.
+
+", "With all of them combined a rift will open up to your world.
+
+", "I wish you goodluck and be careful. This country is under attack by orcs.
+"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Text:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(18),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_dgfud"]
+resource_name = "dialogue_2"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Text:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 6, 9, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": ["Hello adventurer, it seems that you have something on you mind.", "Did we meet earlier today? No, I don't remember meeting you today.", "Anyways, you're saying that you need help getting back to your world?", "Gather all the 4 magic crystals and they could probably transport you back.
+", "This country is under attack by orcs, so keep an eye out for them.
+"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Text:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer:active")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(15),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dgfud"]
+_data = {
+&"RESET": SubResource("Animation_5rqxr"),
+&"dialogue_1": SubResource("Animation_ugw53"),
+&"dialogue_2": SubResource("Animation_dgfud")
+}
 
 [node name="Dialogue" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 235.0
+offset_bottom = 128.0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
-offset_right = 151.0
-offset_bottom = 97.0
-
-[node name="Name" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 228.0
+offset_bottom = 111.0
 
 [node name="Text" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -1.0
+offset_right = 209.0
+offset_bottom = 90.0
+text = "Hello adventurer, it seems that you have something on you mind."
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dgfud")
+}

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://3cb6c0txcw8o"
+path="res://.godot/imported/gigidelaromusic-crystal-light-short-450974 01.10.42.mp3-6368ebf41c74c08eda0ae9aac7273705.mp3str"
+
+[deps]
+
+source_file="res://sounds/gigidelaromusic-crystal-light-short-450974 01.10.42.mp3"
+dest_files=["res://.godot/imported/gigidelaromusic-crystal-light-short-450974 01.10.42.mp3-6368ebf41c74c08eda0ae9aac7273705.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

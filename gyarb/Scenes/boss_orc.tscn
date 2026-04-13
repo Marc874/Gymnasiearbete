@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=3 uid="uid://cjucmpyatqieg"]
+[gd_scene load_steps=130 format=3 uid="uid://cjucmpyatqieg"]
 
 [ext_resource type="Script" uid="uid://bcjxdj2jecvnw" path="res://Scripts/boss_orc.gd" id="1_bpmw4"]
 [ext_resource type="Texture2D" uid="uid://b16yevlp1mwip" path="res://Art/Free-Top-Down-Orc-Game-Character-Pixel-Art/PNG/Orc2/Orc2_idle/orc2_idle_full.png" id="1_k0l1n"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://beyrxx4vh3w43" path="res://Art/Free-Top-Down-Orc-Game-Character-Pixel-Art/PNG/Orc2/Orc2_run/orc2_run_full.png" id="2_sci6j"]
 [ext_resource type="PackedScene" uid="uid://bhh8lkyekfq01" path="res://Scenes/healthbar.tscn" id="4_abc06"]
 [ext_resource type="Texture2D" uid="uid://c2d2hd7pwyume" path="res://Art/Free-Top-Down-Orc-Game-Character-Pixel-Art/PNG/Orc2/Orc2_attack/orc2_attack_full.png" id="4_p0gct"]
+[ext_resource type="AudioStream" uid="uid://byro1jh2q4mjq" path="res://sounds/daviddumaisaudio-large-monster-attack-195713.mp3" id="8_rper1"]
+[ext_resource type="AudioStream" uid="uid://cnl3bbddw26ju" path="res://sounds/boadrius-up-for-battle-206024.mp3" id="9_mcju8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7fch3"]
 atlas = ExtResource("2_abc06")
@@ -986,7 +988,6 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_hitbox"]
 light_mask = 0
 position = Vector2(-1.25, -20)
-scale = Vector2(1, 1)
 shape = SubResource("CircleShape2D_p0gct")
 
 [node name="Sprite2D" type="Sprite2D" parent="enemy_hitbox"]
@@ -1029,6 +1030,16 @@ text = "Orc Officer🧌"
 libraries = {
 &"": SubResource("AnimationLibrary_ngxab")
 }
+
+[node name="sound" type="Node2D" parent="."]
+
+[node name="attack" type="AudioStreamPlayer2D" parent="sound"]
+stream = ExtResource("8_rper1")
+volume_db = -20.0
+
+[node name="boss_music" type="AudioStreamPlayer2D" parent="sound"]
+stream = ExtResource("9_mcju8")
+volume_db = -25.0
 
 [connection signal="body_entered" from="enemy_hitbox" to="." method="_on_enemy_hitbox_body_entered"]
 [connection signal="body_exited" from="enemy_hitbox" to="." method="_on_enemy_hitbox_body_exited"]

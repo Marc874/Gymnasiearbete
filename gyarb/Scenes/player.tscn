@@ -1,4 +1,4 @@
-[gd_scene load_steps=153 format=3 uid="uid://doj2bksyw1obd"]
+[gd_scene load_steps=160 format=3 uid="uid://doj2bksyw1obd"]
 
 [ext_resource type="Script" uid="uid://cbt7qrsygnnnh" path="res://Scripts/player.gd" id="1_x3wgy"]
 [ext_resource type="Texture2D" uid="uid://b51nnw8rww6mu" path="res://Art/FREE_Adventurer 2D Pixel Art/Sprites/IDLE/idle_down.png" id="2_f1ek2"]
@@ -18,9 +18,16 @@
 [ext_resource type="Texture2D" uid="uid://dc8nia7a168u1" path="res://Art/FREE_Adventurer 2D Pixel Art/Sprites/RUN/run_right.png" id="16_vfarp"]
 [ext_resource type="Texture2D" uid="uid://drxlt46ovepnk" path="res://Art/FREE_Adventurer 2D Pixel Art/Sprites/RUN/run_up.png" id="17_y6uwr"]
 [ext_resource type="PackedScene" uid="uid://bhh8lkyekfq01" path="res://Scenes/healthbar.tscn" id="18_igrcy"]
+[ext_resource type="AudioStream" uid="uid://dvasm6qmay51y" path="res://sounds/universfield-male-death-scream-horror-352706.mp3" id="19_fs7ks"]
+[ext_resource type="AudioStream" uid="uid://s2y0nxninvyl" path="res://sounds/dragon-studio-sword-slice-393847.mp3" id="20_l6n3p"]
+[ext_resource type="AudioStream" uid="uid://sfyu2s5ud7l3" path="res://sounds/swoosh-sound-effects.mp3" id="21_olqyp"]
+[ext_resource type="AudioStream" uid="uid://dqiq2wum3h0pm" path="res://sounds/re-zero-return-by-death.mp3" id="22_bi64h"]
+[ext_resource type="AudioStream" uid="uid://73lfmhjctksd" path="res://sounds/re0r.mp3" id="23_2ijsl"]
+[ext_resource type="PackedScene" uid="uid://dqeutnh8mabae" path="res://Scenes/fade_transition.tscn" id="24_2ijsl"]
+[ext_resource type="AudioStream" uid="uid://53faaqimxmba" path="res://sounds/tokyorifft-the-glory-of-gondor-435113.mp3" id="24_p1odr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qqcod"]
-size = Vector2(22.3333, 30)
+size = Vector2(22.3333, 31.3333)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nmr2m"]
 atlas = ExtResource("2_qqcod")
@@ -1052,10 +1059,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 6.28319]
+"values": [0.0, 1.5708]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1076,10 +1083,10 @@ tracks/2/path = NodePath("AnimatedSprite2D:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 15), Vector2(-15, 0), Vector2(0, -15), Vector2(15, 0), Vector2(0, 15)]
+"values": [Vector2(0, 0), Vector2(20, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l6n3p"]
@@ -1095,11 +1102,11 @@ collision_mask = 22
 script = ExtResource("1_x3wgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
-position = Vector2(0.500002, 22.3333)
+position = Vector2(0.500002, -8.33335)
 shape = SubResource("RectangleShape2D_qqcod")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -26.6667)
+position = Vector2(0.666667, -26.6667)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_331ug")
 animation = &"Attack_1_up"
@@ -1110,7 +1117,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player_hitbox"]
-position = Vector2(-0.666672, -13.3333)
+position = Vector2(1.52588e-05, -25)
 shape = SubResource("CircleShape2D_qqcod")
 
 [node name="Healthbar" parent="." instance=ExtResource("18_igrcy")]
@@ -1123,6 +1130,41 @@ offset_bottom = -45.0
 libraries = {
 &"": SubResource("AnimationLibrary_l6n3p")
 }
+
+[node name="sound" type="Node2D" parent="."]
+
+[node name="death" type="AudioStreamPlayer2D" parent="sound"]
+stream = ExtResource("19_fs7ks")
+volume_db = -10.0
+
+[node name="sword" type="AudioStreamPlayer2D" parent="sound"]
+stream = ExtResource("20_l6n3p")
+volume_db = -20.0
+
+[node name="dodge" type="AudioStreamPlayer2D" parent="sound" groups=["enemy"]]
+stream = ExtResource("21_olqyp")
+volume_db = -20.0
+
+[node name="return_by_death_1" type="AudioStreamPlayer2D" parent="sound"]
+stream = ExtResource("22_bi64h")
+volume_db = -10.0
+
+[node name="return_by_death_2" type="AudioStreamPlayer2D" parent="sound"]
+stream = ExtResource("23_2ijsl")
+volume_db = -15.0
+
+[node name="bg_music" type="AudioStreamPlayer2D" parent="sound"]
+stream = ExtResource("24_p1odr")
+volume_db = -10.0
+autoplay = true
+parameters/looping = true
+
+[node name="Fade_transition" parent="." instance=ExtResource("24_2ijsl")]
+visible = false
+offset_left = -587.0
+offset_top = -368.0
+offset_right = 589.0
+offset_bottom = 355.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Player_hitbox" to="." method="_on_player_hitbox_body_entered"]

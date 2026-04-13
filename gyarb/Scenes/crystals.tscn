@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cbsic6l6gw4sv"]
+[gd_scene load_steps=13 format=3 uid="uid://cbsic6l6gw4sv"]
 
 [ext_resource type="Script" uid="uid://hex308f0antv" path="res://Scripts/crystals.gd" id="1_bafxm"]
 [ext_resource type="Texture2D" uid="uid://omyrsderjlic" path="res://Art/Skärmavbild_2026-03-17_kl._15.51.41-removebg-preview.png" id="1_wvrxk"]
+[ext_resource type="PackedScene" uid="uid://je6xwsibqdnp" path="res://Scenes/crystal_sound.tscn" id="3_udfyf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bafxm"]
 radius = 160.0
@@ -57,21 +58,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_wvrxk"]
-resource_name = "passive"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.333333, 0.7, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -20), Vector2(0, 20), Vector2(0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_bafxm"]
 length = 0.001
 tracks/0/type = "value"
@@ -87,6 +73,22 @@ tracks/0/keys = {
 "values": [Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_wvrxk"]
+resource_name = "passive"
+length = 2.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.4, 2.1, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -20), Vector2(0, 0), Vector2(0, 20), Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_udfyf"]
 _data = {
 &"RESET": SubResource("Animation_bafxm"),
@@ -98,6 +100,7 @@ collision_layer = 0
 script = ExtResource("1_bafxm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
 shape = SubResource("CircleShape2D_bafxm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -110,5 +113,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_udfyf")
 }
 
+[node name="crystal_sound" parent="." instance=ExtResource("3_udfyf")]
+
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]

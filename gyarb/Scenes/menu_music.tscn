@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b68tsnb5y144n"]
+
+[ext_resource type="AudioStream" uid="uid://bthk1qr5ee552" path="res://sounds/whvle-aboard-a-aurora-game-menu-pulse-203549.mp3" id="1_audmt"]
+
+[node name="menu_music" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_audmt")
+autoplay = true

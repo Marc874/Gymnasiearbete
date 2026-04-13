@@ -1,10 +1,12 @@
-[gd_scene load_steps=34 format=3 uid="uid://bf18i8xppukcf"]
+[gd_scene load_steps=35 format=3 uid="uid://bf18i8xppukcf"]
 
 [ext_resource type="Script" uid="uid://cqpjn5pm5au2j" path="res://Scripts/npc_john.gd" id="1_dcela"]
 [ext_resource type="Texture2D" uid="uid://cxg3bgtnkjrm8" path="res://Art/NPC Pack/Old man/Old man walk-Sheet.png" id="1_tvebo"]
+[ext_resource type="PackedScene" uid="uid://dvmjag4xx1hov" path="res://Scenes/dialogue.tscn" id="3_wm6or"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dcela"]
-height = 36.0
+radius = 9.0
+height = 18.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dcela"]
 atlas = ExtResource("1_tvebo")
@@ -246,11 +248,11 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wm6or"]
-radius = 33.5037
+radius = 49.5631
 
 [node name="NPC_john" type="CharacterBody2D"]
 scale = Vector2(2, 2)
-collision_layer = 16
+collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_dcela")
 
@@ -265,7 +267,7 @@ animation = &"talking_left"
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.5, -0.5)
+position = Vector2(1.5, 0)
 shape = SubResource("CircleShape2D_wm6or")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
@@ -275,6 +277,13 @@ offset_right = 31.5
 offset_bottom = 12.5
 scale = Vector2(0.5, 0.5)
 text = "John"
+
+[node name="Dialogue" parent="." instance=ExtResource("3_wm6or")]
+visible = false
+offset_left = -94.5
+offset_top = -95.5
+offset_right = 140.5
+offset_bottom = 32.5
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

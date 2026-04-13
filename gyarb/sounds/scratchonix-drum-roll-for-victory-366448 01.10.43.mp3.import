@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c7n3c8kqdhgk3"
+path="res://.godot/imported/scratchonix-drum-roll-for-victory-366448 01.10.43.mp3-5d175db2d240aac98bc78ca1575ae1ac.mp3str"
+
+[deps]
+
+source_file="res://sounds/scratchonix-drum-roll-for-victory-366448 01.10.43.mp3"
+dest_files=["res://.godot/imported/scratchonix-drum-roll-for-victory-366448 01.10.43.mp3-5d175db2d240aac98bc78ca1575ae1ac.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
