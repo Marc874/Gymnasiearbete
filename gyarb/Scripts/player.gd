@@ -107,39 +107,39 @@ func _physics_process(delta):
 
 #Spelarens movement
 func player_movement(delta):
-	is_moving = false
+	is_moving = false #Moving status börjar falsk
 	
-	if Input.is_action_pressed("Right"):
-		current_dir = "right"
-		play_anim(1)
-		velocity.x = speed
-		velocity.y = 0
-		is_moving = true
-	elif Input.is_action_pressed("Left"):
+	if Input.is_action_pressed("Right"): #Om man trycker på d
+		current_dir = "right" #Riktning blir höger
+		play_anim(1) #Spela movement animatoin
+		velocity.x = speed #Fart i x-led blir speed
+		velocity.y = 0 #Fart i y-led är 0
+		is_moving = true #Moving status blir sann
+	elif Input.is_action_pressed("Left"): #Samma som saken ovanför fast för vänster
 		current_dir = "left"
 		play_anim(1)
 		velocity.x = -speed
 		velocity.y = 0
 		is_moving = true
-	elif Input.is_action_pressed("Down"):
+	elif Input.is_action_pressed("Down"): #Samma som saken ovanför fast för nedåt
 		current_dir = "down"
 		play_anim(1)
 		velocity.x = 0
 		velocity.y = speed
 		is_moving = true
-	elif Input.is_action_pressed("Up"):
+	elif Input.is_action_pressed("Up"): #Samma som saken ovanför fast uppåt
 		current_dir = "up"
 		play_anim(1)
 		velocity.x = 0
 		velocity.y = -speed
 		is_moving = true
-	else:
-		play_anim(0)
-		velocity.x = 0
-		velocity.y = 0
-		is_moving = false
+	else: #Om man inte rör sig 
+		play_anim(0) #Spela idle animation
+		velocity.x = 0 #x-led fart är 0
+		velocity.y = 0 #y-led fart är 0
+		is_moving = false #Moving status är falsk
 	
-	move_and_slide()		
+	move_and_slide() #Rör på spelare
 	
 #Animationer för movement
 func play_anim(movement):
