@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://bb8wj34o5p02e"]
+[gd_scene load_steps=9 format=3 uid="uid://bb8wj34o5p02e"]
 
 [ext_resource type="Texture2D" uid="uid://c15hbb6a44djv" path="res://Art/2D Chests & Coins/Coin_Sparkle.png" id="1_2qo34"]
-[ext_resource type="Script" uid="uid://dca80inmjtmr3" path="res://Scripts/coin.gd" id="2_jgi06"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jgi06"]
 atlas = ExtResource("1_2qo34")
@@ -58,4 +57,3 @@ sprite_frames = SubResource("SpriteFrames_2l7mo")
 animation = &"coin"
 frame = 5
 frame_progress = 1.0
-script = ExtResource("2_jgi06")

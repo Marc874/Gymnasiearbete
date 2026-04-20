@@ -8766,16 +8766,16 @@ scale = Vector2(0.15, 0.15)
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("10_hvaui")]
-position = Vector2(59.5, 322.5)
+position = Vector2(408.5, 419.5)
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("10_hvaui")]
 position = Vector2(2128, -1540)
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("10_hvaui")]
-position = Vector2(-316, 164)
+position = Vector2(-182.5, 239.5)
 
 [node name="Enemy4" parent="Enemies" instance=ExtResource("10_hvaui")]
-position = Vector2(-228, 432)
+position = Vector2(55.5, 417)
 
 [node name="Enemy5" parent="Enemies" instance=ExtResource("10_hvaui")]
 position = Vector2(2316, -1764)
@@ -8835,7 +8835,7 @@ position = Vector2(6663, 64.5)
 scale = Vector2(0.64, 0.64)
 
 [node name="Boss_Orc" parent="Orc_officers" instance=ExtResource("16_fg7i4")]
-position = Vector2(396, 420)
+position = Vector2(3715, -3222)
 scale = Vector2(0.7, 0.7)
 
 [node name="Boss_Orc2" parent="Orc_officers" instance=ExtResource("16_fg7i4")]
@@ -8843,7 +8843,7 @@ position = Vector2(8574, -1369.5)
 scale = Vector2(0.64, 0.64)
 
 [node name="Boss_Orc3" parent="Orc_officers" instance=ExtResource("16_fg7i4")]
-position = Vector2(2228, -228)
+position = Vector2(2296, -293.5)
 scale = Vector2(0.64, 0.64)
 
 [node name="Boss_Orc5" parent="Orc_officers" instance=ExtResource("16_fg7i4")]

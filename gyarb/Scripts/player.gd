@@ -191,6 +191,8 @@ func attack():
 	for body in bodies:
 		if body is Enemy or Boss_Enemy: #Om kropp är enemy eller boss enemy så ska dem ta skadan som den nuvarande attacken gör
 			body.take_damage(current_attack_damage)
+		else:
+			pass
 			
 	match current_dir: #Matchar nuvarade riktningen med den animation som ska spelas
 		"right":
